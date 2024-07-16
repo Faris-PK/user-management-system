@@ -1,0 +1,46 @@
+
+<%-include('../layouts/adminHeader.ejs')%>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form p-l-55 p-r-55 p-t-180 pb-5" method="post" action="/admin/editUser/<%= user._id %>">
+                <span class="login100-form-title">
+                    Edit Profile
+                </span>
+                <% if (messages.error) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Error!</strong> <%= messages.error %>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter your name" style="margin-bottom: 20px;">
+                    <input class="input100" type="text" name="name" placeholder="Enter your name" value="<%= user.name %>">
+                    <span class="focus-input100"></span>
+                </div>
+                
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter your email" style="margin-bottom: 20px;">
+                    <input class="input100" type="email" name="email" placeholder="Enter your email" value="<%= user.email %>">
+                    <span class="focus-input100"></span>
+                </div>
+                
+                <div class="wrap-input100 validate-input" data-validate="Please enter your mobile number" style="margin-top: 40px;">
+                    <input class="input100" type="text" name="mobile" placeholder="Enter your mobile number" value="<%= user.mobile %>">
+                    <span class="focus-input100"></span>
+                </div>
+                
+                <div class="container-login100-form-btn mt-5">
+                    <button class="login100-form-btn" type="submit">
+                        Update Profile
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<%-include('../layouts/adminFooter.ejs')%>

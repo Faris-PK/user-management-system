@@ -1,0 +1,94 @@
+<%-include('../layouts/adminHeader.ejs')%>
+<div class="limiter" style="padding: 50px;">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-form">
+                <div class="table-responsive ">
+                    <h1 class="text-center" style="font-size: 2.5em; margin-bottom: 20px;">Users List</h1>
+                    <div class="search-container" style="margin-bottom: 20px;">
+                        <form action="/admin/searchUsers" method="GET">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="Search users..." style="font-size: 1.2em;">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <table class="table table-striped mt-4">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Mobile</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(user => { %>
+                                <tr>
+                                    <td><%= user.name %></td>
+                                    <td><%= user.email %></td>
+                                    <td><%= user.mobile %></td>
+                                    <td>
+                                        <a href="/admin/edit/<%= user.id %>" class="btn btn-primary btn-sm ">Edit</a>
+                                        <a href="/admin/delete/<%= user.id %>" class="btn btn-danger btn-sm">Delete</a>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Buttons Container -->
+                <div class="buttons-container" style="margin-top: 20px; display: flex; justify-content: space-between;">
+                    <a href="/admin/logout" class="login100-form-btn logout-btn">Logout</a>
+                    <a href="/admin/addUser" class="login100-form-btn add-user-btn ml-2">Add User</a>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+
+
+
+.input-group {
+    display: flex;
+    align-items: center; 
+}
+
+.input-group-append {
+    margin-left: -1px; 
+    display: flex;
+}
+
+.input-group .form-control {
+    flex: 1;
+    margin-right: 5px; 
+}
+.buttons-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logout-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.add-user-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+
+
+</style>
+
+<%-include('../layouts/adminFooter.ejs')%>

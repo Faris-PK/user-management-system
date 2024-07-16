@@ -1,0 +1,129 @@
+<%-include('../layouts/header.ejs')%>
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('assets/user/images/bg-01.jpg');">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+            <form class="login100-form validate-form" method="post" action="/updateUser" >
+                <span class="login100-form-title p-b-49">
+                    Edit Profile
+                </span>
+                <% if (messages.error) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Error!</strong> <%= messages.error %>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+                <% if (messages.success) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Success!</strong> <%= messages.success %>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+                
+
+                <div class="wrap-input100 validate-input m-b-23"  data-validate="Name is required">
+                    <span class="label-input100">Name</span>
+                    <input class="input100" type="text" name="name" id="name" value="<%= username %>" placeholder="Enter your name" >
+                    <span class="focus-input100" data-symbol="&#xf206;"></span>
+                    <span class="error-message"></span> <!-- Error message container -->
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-23" data-validate="Email is required">
+                    <span class="label-input100">Email</span>
+                    <input class="input100" type="email" name="email" id="email" value="<%= email %>" placeholder="Enter your email" >
+                    <span class="focus-input100" data-symbol="&#xf206;"></span>
+                    <span class="error-message"></span> <!-- Error message container -->
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-23" data-validate="Mobile is required">
+                    <span class="label-input100">Mobile</span>
+                    <input class="input100" type="tel" name="mobile" id="mobile" value="<%= mobile %>" placeholder="Enter your mobile number" >
+                    <span class="focus-input100" data-symbol="&#xf206;"></span>
+                    <span class="error-message"></span> <!-- Error message container -->
+                </div>
+
+                <div class="container-login100-form-btn mt-5">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn" type="submit">
+                            Update Profile
+                        </button>
+                    </div>
+                </div>
+
+                <div class="txt1 text-center p-t-54 p-b-20">
+                    <a href="/home" class="font-weight-bold">Back to Home</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="dropDownSelect1"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var form = document.querySelector('.login100-form');
+
+        form.addEventListener('submit', function (event) {
+            var isValid = true;
+
+            // Validate name
+            var nameInput = document.getElementById('name');
+            var nameErrorMessage = nameInput.parentNode.querySelector('.error-message');
+            if (!nameInput.value.trim()) {
+                nameErrorMessage.textContent = 'Name is required';
+                nameInput.classList.add('input-error'); // Add class to highlight input
+                isValid = false;
+            } else {
+                nameErrorMessage.textContent = '';
+                nameInput.classList.remove('input-error'); // Remove class
+            }
+
+            // Validate email
+            var emailInput = document.getElementById('email');
+            var emailErrorMessage = emailInput.parentNode.querySelector('.error-message');
+            if (!emailInput.value.trim()) {
+                emailErrorMessage.textContent = 'Email is required';
+                emailInput.classList.add('input-error'); // Add class
+                isValid = false;
+            } else {
+                emailErrorMessage.textContent = '';
+                emailInput.classList.remove('input-error'); // Remove class
+            }
+
+            // Validate mobile
+            var mobileInput = document.getElementById('mobile');
+            var mobileErrorMessage = mobileInput.parentNode.querySelector('.error-message');
+            if (!mobileInput.value.trim()) {
+                mobileErrorMessage.textContent = 'Mobile is required';
+                mobileInput.classList.add('input-error'); // Add class
+                isValid = false;
+            } else {
+                mobileErrorMessage.textContent = '';
+                mobileInput.classList.remove('input-error'); // Remove class
+            }
+
+            if (!isValid) {
+                event.preventDefault(); // Prevent form submission if not valid
+            }
+        });
+    });
+</script>
+
+<style>
+    .error-message {
+        color: red;
+    }
+
+    .input-error {
+        border-color: red; /* Add red border color to highlight the input */
+    }
+</style>
+
+
+<%-include('../layouts/footer.ejs')%>
+
